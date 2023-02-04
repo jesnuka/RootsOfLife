@@ -12,4 +12,6 @@ public class GameSettings : MonoBehaviour
     public int RowAmount { get { return _rowAmount; } set { _rowAmount = value; } }
     [field: SerializeField] private int _maxRowAmount;
     public int MaxRowAmount { get { return _maxRowAmount; } set { _maxRowAmount = value; } }
+    [field: SerializeField] private float _turnSpeed;
+    public float TurnSpeed { get { return _turnSpeed; } set { _turnSpeed = value; } }
 }

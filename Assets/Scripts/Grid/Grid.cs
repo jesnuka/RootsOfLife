@@ -67,4 +67,25 @@ public class Grid : MonoBehaviour
             }
         }
     }
+
+    public Cell[] GetNeighbors(GridPosition position)
+    {
+        Cell[] neighbors = new Cell[8];
+        int index = 0;
+        for(int x = position.Column - 1; x <= position.Column+1; x++)
+        {
+            for (int y = position.Row - 1; y <= position.Row+1; y++)
+            {
+                if ((x == position.Column && y == position.Row) ||
+                    (x < 0 || x >= ColumnAmount || y < 0 || y >= RowAmount))
+                    continue;
+
+                neighbors[index] = Rows[y].Cells[x];
+                index += 1;
+            }
+        }
+        
+        return neighbors;
+    }
+
 }
