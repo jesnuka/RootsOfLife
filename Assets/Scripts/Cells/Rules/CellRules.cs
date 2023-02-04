@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class CellRules
 {
+    
     public bool GetAliveState(int neighborAmount, int aliveNeighbors, bool currentState)
     {
         int deadNeighbors = neighborAmount - aliveNeighbors;

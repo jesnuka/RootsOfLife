@@ -16,6 +16,9 @@ public class GameplayManager : MonoBehaviour
 
     private bool _isUpdating;
     public bool IsUpdating { get { return _isUpdating; } set { _isUpdating = value; } }
+    
+    private bool _isPaused;
+    public bool IsPaused { get { return _isPaused; } set { _isPaused = value; } }
 
     private void Start()
     {
@@ -25,6 +28,11 @@ public class GameplayManager : MonoBehaviour
         StartGridUpdate();
     }
 
+    public void TogglePause()
+    {
+
+        IsPaused = !IsPaused;
+    }
 
     public void ChangeSettings(GameSettings newSettings)
     {
@@ -39,8 +47,10 @@ public class GameplayManager : MonoBehaviour
     IEnumerator WaitForTurn()
     {
         yield return new WaitForSeconds(GameSettings.TurnSpeed);
-        if (!IsUpdating)
+        if (!IsUpdating && !IsPaused)
             UpdateGrid();
+        else if(!IsUpdating && IsPaused)
+            StartCoroutine(WaitForTurn());
     }
 
     private void UpdateGrid()

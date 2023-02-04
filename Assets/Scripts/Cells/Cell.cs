@@ -68,10 +68,17 @@ public class Cell : MonoBehaviour
 
     public void CalculateNextState()
     {
-        Cell[] neighbors = Grid.GetNeighbors(Position);
+        Cell[] neighbors = GetNeighbors();
         int aliveNeighbors = CountAliveNeighbors(neighbors);
         bool nextState = CellRules.GetAliveState(neighbors.Length, aliveNeighbors, IsAlive);
         NextState = nextState;
+    }
+
+    public Cell[] GetNeighbors()
+    {
+        Cell[] neighbors = new Cell[8];
+        Grid.GetNeighbors(Position);
+        return neighbors;
     }
 
     public int CountAliveNeighbors(Cell[] neighbors)
