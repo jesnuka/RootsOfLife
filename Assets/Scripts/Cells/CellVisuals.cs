@@ -81,7 +81,7 @@ public class CellVisuals : MonoBehaviour
             else if (right && left)
             {
                 _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.I);
-                RotateImage(180f);
+                RotateImage(90f);
             }
             else if (up)
             {
