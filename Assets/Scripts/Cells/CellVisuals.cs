@@ -11,6 +11,7 @@ public class CellVisuals : MonoBehaviour
     [SerializeField] private Cell _cell;
 
     public bool up, right, down, left;
+    public Cell[] neighbors;
 
     public RectTransform RectTransform { get { return _rectTransform; } }
 
@@ -19,12 +20,13 @@ public class CellVisuals : MonoBehaviour
         if (_image == null || _cellSpriteManager == null) return;
 
 
-        Cell[] neighbors = _cell.GetNeighbors();
+        neighbors = _cell.GetNeighbors();
 
-        up = neighbors[3]==null ? false : neighbors[3].IsAlive;
-        right = neighbors[6] == null ? false : neighbors[6].IsAlive;
-        down = neighbors[4] == null ? false : neighbors[4].IsAlive;
-        left = neighbors[1] == null ? false : neighbors[1].IsAlive;
+        up = neighbors[3]==null ? false : neighbors[3].NextState;
+        right = neighbors[6] == null ? false : neighbors[6].NextState;
+        down = neighbors[4] == null ? false : neighbors[4].NextState;
+        left = neighbors[1] == null ? false : neighbors[1].NextState;
+
 
         if (_cell.IsAlive)
         {

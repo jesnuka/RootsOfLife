@@ -73,11 +73,12 @@ public class Grid : MonoBehaviour
         {
             for (int y = position.Row - 1; y <= position.Row+1; y++)
             {
-                if ((x == position.Column && y == position.Row) ||
-                    (x < 0 || x >= ColumnAmount || y < 0 || y >= RowAmount))
+                if (x == position.Column && y == position.Row)
                     continue;
-
-                neighbors[index] = Rows[y].Cells[x];
+                if (x < 0 || x >= ColumnAmount || y < 0 || y >= RowAmount)
+                    neighbors[index] = null;
+                else 
+                    neighbors[index] = Rows[y].Cells[x];
                 index += 1;
             }
         }
