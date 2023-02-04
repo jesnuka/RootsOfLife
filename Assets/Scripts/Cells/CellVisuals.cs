@@ -10,6 +10,8 @@ public class CellVisuals : MonoBehaviour
     [SerializeField] private CellSpriteManager _cellSpriteManager;
     [SerializeField] private Cell _cell;
 
+    public bool up, right, down, left;
+
     public RectTransform RectTransform { get { return _rectTransform; } }
 
     public void ToggleCell(bool value)
@@ -17,13 +19,12 @@ public class CellVisuals : MonoBehaviour
         if (_image == null || _cellSpriteManager == null) return;
 
 
-        //TODO: Logic for selecting the thing
         Cell[] neighbors = _cell.GetNeighbors();
 
-        bool up = neighbors[6]==null ? false : neighbors[6].IsAlive;
-        bool right = neighbors[4] == null ? false : neighbors[4].IsAlive;
-        bool down = neighbors[1] == null ? false : neighbors[1].IsAlive;
-        bool left = neighbors[3] == null ? false : neighbors[3].IsAlive;
+        up = neighbors[3]==null ? false : neighbors[3].IsAlive;
+        right = neighbors[6] == null ? false : neighbors[6].IsAlive;
+        down = neighbors[4] == null ? false : neighbors[4].IsAlive;
+        left = neighbors[1] == null ? false : neighbors[1].IsAlive;
 
         if (_cell.IsAlive)
         {
@@ -101,6 +102,10 @@ public class CellVisuals : MonoBehaviour
             {
                 _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
                 RotateImage(270f);
+            } else
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                RotateImage(0f);
             }
         }
         else
