@@ -22,13 +22,13 @@ public class CellVisuals : MonoBehaviour
 
         neighbors = _cell.GetNeighbors();
 
-        up = neighbors[3]==null ? false : neighbors[3].NextState;
-        right = neighbors[6] == null ? false : neighbors[6].NextState;
-        down = neighbors[4] == null ? false : neighbors[4].NextState;
-        left = neighbors[1] == null ? false : neighbors[1].NextState;
+        up = neighbors[3]==null ? false : neighbors[3].CurrentState;
+        right = neighbors[6] == null ? false : neighbors[6].CurrentState;
+        down = neighbors[4] == null ? false : neighbors[4].CurrentState;
+        left = neighbors[1] == null ? false : neighbors[1].CurrentState;
 
 
-        if (_cell.IsAlive)
+        if (_cell.CurrentState)
         {
             if (up && right && down && left)
             {

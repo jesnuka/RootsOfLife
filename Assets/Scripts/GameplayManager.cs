@@ -82,6 +82,13 @@ public class GameplayManager : MonoBehaviour
                 Grid.Rows[y].Cells[x].UpdateCellState();
             }
         }
+        for (int x = 0; x < Grid.ColumnAmount; x++)
+        {
+            for (int y = 0; y < Grid.RowAmount; y++)
+            {
+                Grid.Rows[y].Cells[x].UpdateVisuals();
+            }
+        }
 
         IsUpdating = false;
 

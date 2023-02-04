@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CellRules_Default : CellRules
 {
-    public override bool CheckRules(int neighborAmount, int aliveNeighbors, bool currentState)
+    public override bool CheckRules(Cell cell, int aliveNeighbors, bool currentState)
     {
         bool newState = false;
 
