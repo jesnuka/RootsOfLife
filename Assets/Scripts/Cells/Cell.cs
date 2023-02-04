@@ -42,6 +42,12 @@ public class Cell : MonoBehaviour
         CellVisuals.ToggleCell(value);
     }
 
+    public void CellClicked()
+    {
+        Debug.Log("Clicked");
+        ToggleCell(!IsAlive);
+    }
+
     public Vector2 GetSize()
     {
         return CellVisuals.GetSize();
@@ -51,9 +57,6 @@ public class Cell : MonoBehaviour
     {
         Cell[] neighbors = Grid.GetNeighbors(Position);
         int aliveNeighbors = CountAliveNeighbors(neighbors);
-
-        Debug.Log("Neighbors is: " + neighbors);
-        Debug.Log("RULES is: " + CellRules);
         bool isAlive = CellRules.GetAliveState(neighbors.Length, aliveNeighbors, IsAlive);
         ToggleCell(isAlive);
     }
