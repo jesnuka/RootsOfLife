@@ -41,7 +41,7 @@ public class Cell : MonoBehaviour
     public void ToggleCell(bool value)
     {
         IsAlive = value;
-        CellVisuals.ToggleCell(value);
+        CellVisuals.ToggleCell();
     }
     
     public void CellClicked()

@@ -14,7 +14,7 @@ public class CellVisuals : MonoBehaviour
 
     public RectTransform RectTransform { get { return _rectTransform; } }
 
-    public void ToggleCell(bool value)
+    public void ToggleCell(bool isSpecial = false)
     {
         if (_image == null || _cellSpriteManager == null) return;
 
