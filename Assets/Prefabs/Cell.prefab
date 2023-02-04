@@ -166,9 +166,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda2f50bc18825443a38fcca9570810e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _variations_Plus: []
-  _variations_L: []
-  _variations_I: []
-  _variations_T: []
-  _variations_Seed: []
-  _variations_Empty: []
+  _variations_Plus:
+  - {fileID: 21300000, guid: 7e32b7c089dbe4f41a28ce478f033814, type: 3}
+  _variations_L:
+  - {fileID: 21300000, guid: 23b233b3f399e02478203e83b8e73c89, type: 3}
+  _variations_I:
+  - {fileID: 21300000, guid: afc29aac4af5cce4293cb0c56c08090d, type: 3}
+  - {fileID: 21300000, guid: 4adb7975bfa027240a1a4bf01a7ae311, type: 3}
+  _variations_T:
+  - {fileID: 0}
+  _variations_Seed:
+  - {fileID: 21300000, guid: 22fd1900e75ebc34787fd49f166f5e11, type: 3}
+  _variations_Empty:
+  - {fileID: 0}

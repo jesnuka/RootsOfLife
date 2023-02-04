@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CellVisuals : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
-    [SerializeField] private Image _spriteRenderer;
+    [SerializeField] private Image _image;
     [SerializeField] private CellSpriteManager _cellSpriteManager;
     [SerializeField] private Cell _cell;
 
@@ -14,16 +14,23 @@ public class CellVisuals : MonoBehaviour
 
     public void ToggleCell(bool value)
     {
-        if (_spriteRenderer != null && _spriteRenderer != null)
-        {
-            _spriteRenderer.sprite = _cellSpriteManager.GetSprite(0);
-        }
+        if (_image == null || _cellSpriteManager == null) return;
 
-        //foreach
+
+        //TODO: Logic for selecting the thing
+        if (_cell.IsAlive) _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Plus);
+        else _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Empty);
+
     }
 
     public Vector2 GetSize()
     {
         return new Vector2(RectTransform.sizeDelta.x, RectTransform.sizeDelta.y);
+    }
+
+    public void Update()
+    {
+        //FOR TESTING ONLY:
+        //ToggleCell(false);
     }
 }
