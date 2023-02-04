@@ -47,8 +47,6 @@ public class Grid : MonoBehaviour
         ColumnAmount = gameSettings.ColumnAmount;
         RowAmount = gameSettings.RowAmount;
 
-        Debug.Log("ColumnAmount is: " + ColumnAmount);
-
         Rows = new Row[RowAmount];
 
         for (int y = 0; y < RowAmount; y++)
