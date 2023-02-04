@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,10 +24,7 @@ public class Cell : MonoBehaviour
     // The next state of the cell that will be applied at the end of current turn
     [field: SerializeField] private bool _nextState;
     public bool NextState { get { return _nextState; } set { _nextState = value; } }
-    private void Start()
-    {
-        GameplayManager.onCheckingFinished += UpdateCellState;
-    }
+
     public Cell(Grid grid)
     {
         Grid = grid;
@@ -42,16 +40,12 @@ public class Cell : MonoBehaviour
 
     public void ToggleCell(bool value)
     {
-        if (IsAlive == value)
-            return;
-
         IsAlive = value;
         CellVisuals.ToggleCell(value);
     }
     
     public void CellClicked()
     {
-        Debug.Log("Clicked");
         ToggleCell(!IsAlive);
     }
 
@@ -62,7 +56,6 @@ public class Cell : MonoBehaviour
 
     public void UpdateCellState()
     {
-        Debug.Log(" Updated State ");
         ToggleCell(NextState);
     }
 
@@ -70,15 +63,12 @@ public class Cell : MonoBehaviour
     {
         Cell[] neighbors = GetNeighbors();
         int aliveNeighbors = CountAliveNeighbors(neighbors);
-        bool nextState = CellRules.GetAliveState(neighbors.Length, aliveNeighbors, IsAlive);
-        NextState = nextState;
+        NextState = CellRules.GetAliveState(neighbors.Length, aliveNeighbors, IsAlive);
     }
 
     public Cell[] GetNeighbors()
     {
-        Cell[] neighbors = new Cell[8];
-        Grid.GetNeighbors(Position);
-        return neighbors;
+        return Grid.GetNeighbors(Position);
     }
 
     public int CountAliveNeighbors(Cell[] neighbors)

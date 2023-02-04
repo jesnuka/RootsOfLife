@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,19 +23,14 @@ public class Grid : MonoBehaviour
    // public int RowAmount { get { return GameSettings.RowAmount; } }
     public int RowAmount { get { return _rowAmount; } set { _rowAmount = value; } }
 
+    private int _cellAmount;
+    public int CellAmount { get { return _cellAmount; } set { _cellAmount = value; } }
+
     private GameSettings _gameSettings;
     public GameSettings GameSettings { get { return _gameSettings; } set { _gameSettings = value; } }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-    
-    void Update()
-    {
-        
-    }
+    private int _cellsUpdated;
+    public int CellsUpdated { get { return _cellsUpdated; } set { _cellsUpdated = value; } }
 
     public void CreateGrid(GameSettings gameSettings)
     {
@@ -64,6 +60,9 @@ public class Grid : MonoBehaviour
 
             }
         }
+
+        CellAmount = ColumnAmount * RowAmount;
+        Debug.Log("Cell Amount = " + CellAmount);
     }
 
     public Cell[] GetNeighbors(GridPosition position)

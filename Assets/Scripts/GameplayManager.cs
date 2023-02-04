@@ -34,6 +34,12 @@ public class GameplayManager : MonoBehaviour
         IsPaused = !IsPaused;
     }
 
+    public void FinishUpdate()
+    {
+        IsUpdating = false;
+        onUpdateFinished?.Invoke();
+    }
+
     public void ChangeSettings(GameSettings newSettings)
     {
         GameSettings = newSettings;
@@ -49,27 +55,32 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(GameSettings.TurnSpeed);
         if (!IsUpdating && !IsPaused)
             UpdateGrid();
-        else if(!IsUpdating && IsPaused)
-            StartCoroutine(WaitForTurn());
     }
 
     private void UpdateGrid()
     {
         IsUpdating = true;
 
-        // Perform grid update
+        // Perform grid check for next state
         for(int x = 0; x < Grid.ColumnAmount; x++)
         {
             for (int y = 0; y < Grid.RowAmount; y++)
             {
-                // Get all neighbors for each cell and let them perform the update
                 Grid.Rows[y].Cells[x].CalculateNextState();
             }
         }
 
         onCheckingFinished?.Invoke();
 
-        IsUpdating = false;
-        onUpdateFinished?.Invoke();
+        // Perform grid update
+        for (int x = 0; x < Grid.ColumnAmount; x++)
+        {
+            for (int y = 0; y < Grid.RowAmount; y++)
+            {
+                Grid.Rows[y].Cells[x].UpdateCellState();
+            }
+        }
+
+        FinishUpdate();
     }
 }
