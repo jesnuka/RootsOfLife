@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CellFactory : MonoBehaviour
 {
-    private Grid _grid;
+    [field: SerializeField] private CellRules_Default _rulesDefault;
+    public CellRules_Default RulesDefault { get { return _rulesDefault; } set { _rulesDefault = value; } }
+
+    [field: SerializeField] private Grid _grid;
     public Grid Grid { get { return _grid; } set { _grid = value; } }
 
     [SerializeField] private GameObject _cellPrefab;
@@ -15,12 +18,24 @@ public class CellFactory : MonoBehaviour
 
     public Cell CreateCell(Vector3 position, Transform parent)
     {
+
         GameObject cellObject = Instantiate(CellPrefab, position, Quaternion.identity);
         cellObject.transform.SetParent(parent, false);
         Cell cell = cellObject.GetComponent<Cell>();
+        cell.CellRules = ChooseRules();
         cell.Grid = Grid;
 
         return cell;
+    }
+
+    private CellRules ChooseRules()
+    {
+        // TODO: Change rules
+
+        if (RulesDefault == null)
+            RulesDefault = new CellRules_Default();
+
+        return RulesDefault;
     }
 
     public Row CreateRow(int columnAmount, Vector3 position, Transform parent)

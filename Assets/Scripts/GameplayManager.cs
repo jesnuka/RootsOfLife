@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,52 @@ public class GameplayManager : MonoBehaviour
     [field: SerializeField] private GameSettings _gameSettings;
     public GameSettings GameSettings { get { return _gameSettings; } set { _gameSettings = value; } }
 
+    public static event Action onUpdateFinished;
+
+    private bool _isUpdating;
+    public bool IsUpdating { get { return _isUpdating; } set { _isUpdating = value; } }
+
     private void Start()
     {
+        onUpdateFinished += StartGridUpdate;
         Grid.CreateGrid(GameSettings);
+
+        StartGridUpdate();
     }
+
 
     public void ChangeSettings(GameSettings newSettings)
     {
         GameSettings = newSettings;
+    }
+
+    private void StartGridUpdate()
+    {
+        StartCoroutine(WaitForTurn());
+    }
+
+    IEnumerator WaitForTurn()
+    {
+        yield return new WaitForSeconds(GameSettings.TurnSpeed);
+        if (!IsUpdating)
+            UpdateGrid();
+    }
+
+    private void UpdateGrid()
+    {
+        IsUpdating = true;
+
+        // Perform grid update
+        for(int x = 0; x < Grid.ColumnAmount; x++)
+        {
+            for (int y = 0; y < Grid.RowAmount; y++)
+            {
+                // Get all neighbors for each cell and let them perform the update
+                Grid.Rows[y].Cells[x].UpdateCellState();
+            }
+        }
+
+        IsUpdating = false;
+        onUpdateFinished?.Invoke();
     }
 }
