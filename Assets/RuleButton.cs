@@ -19,12 +19,16 @@ public class RuleButton : MonoBehaviour
         for (int i = 0; i < ButtonsCheckedAliveRule.Length; i++)
         {
             DisplayVisuals(ButtonsCheckedAliveRule, imagesAliveRule, i);
+
         }
 
         for (int i = 0; i < ButtonsCheckedDeadRule.Length; i++)
         {
             DisplayVisuals(ButtonsCheckedDeadRule, imagesDeadRule, i);
         }
+
+        OnAliveRuleChange?.Invoke(ButtonsCheckedAliveRule);
+        OnDeadRuleChange?.Invoke(ButtonsCheckedDeadRule);
     }
 
     public void OnAliveClick(int i)
@@ -43,7 +47,7 @@ public class RuleButton : MonoBehaviour
 
     private void DisplayVisuals(bool[] b, Image[] l, int i)
     {
-        if (l[i])
+        if (b[i])
         {
             l[i].color = Color.black;
         }
