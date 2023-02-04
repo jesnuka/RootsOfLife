@@ -11,6 +11,7 @@ public class GameplayManager : MonoBehaviour
     [field: SerializeField] private GameSettings _gameSettings;
     public GameSettings GameSettings { get { return _gameSettings; } set { _gameSettings = value; } }
 
+    public static event Action onCheckingFinished;
     public static event Action onUpdateFinished;
 
     private bool _isUpdating;
@@ -52,9 +53,11 @@ public class GameplayManager : MonoBehaviour
             for (int y = 0; y < Grid.RowAmount; y++)
             {
                 // Get all neighbors for each cell and let them perform the update
-                Grid.Rows[y].Cells[x].UpdateCellState();
+                Grid.Rows[y].Cells[x].CalculateNextState();
             }
         }
+
+        onCheckingFinished?.Invoke();
 
         IsUpdating = false;
         onUpdateFinished?.Invoke();

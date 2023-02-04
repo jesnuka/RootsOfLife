@@ -30,7 +30,7 @@ public class CellFactory : MonoBehaviour
 
     private CellRules ChooseRules()
     {
-        // TODO: Change rules
+        // TODO: Change rules here
 
         if (RulesDefault == null)
             RulesDefault = new CellRules_Default();
