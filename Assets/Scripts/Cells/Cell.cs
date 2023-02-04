@@ -18,8 +18,14 @@ public class Cell : MonoBehaviour
     public CellRules CellRules { get { return _cellRules; } set { _cellRules = value; } }
 
     // The current state of the cell
-    [field: SerializeField] private bool _isAlive;
-    public bool IsAlive { get { return _isAlive; } set { _isAlive = value; } }
+    [field: SerializeField] private bool _currentState;
+    public bool CurrentState { get { return _currentState; } set { _currentState = value; } }
+
+    [field: SerializeField] private int _deathSaves;
+    public int DeathSaves { get { return _deathSaves; } set { _deathSaves = value;  } }
+
+    [field: SerializeField] private int _lifeSaves;
+    public int LifeSaves { get { return _lifeSaves; } set { _lifeSaves = value; } }
 
     // The next state of the cell that will be applied at the end of current turn
     [field: SerializeField] private bool _nextState;
@@ -40,13 +46,42 @@ public class Cell : MonoBehaviour
 
     public void ToggleCell(bool value)
     {
-        IsAlive = value;
+        if(value == false)
+        {
+            DeathSaves += 1;
+            if (DeathSaves >= 2)
+            {
+                LifeSaves = 0;
+                CurrentState = false;
+            }
+            UpdateVisuals();
+        }
+        else
+        {
+            if (CurrentState == true)
+                LifeSaves += 1;
+            if(LifeSaves >= 5)
+            {
+                CurrentState = false;
+                UpdateVisuals();
+            }
+            else
+            {
+                DeathSaves = 0;
+                CurrentState = true;
+                UpdateVisuals();
+            }
+        }
+    }
+
+    public void UpdateVisuals()
+    {
         CellVisuals.ToggleCell();
     }
     
     public void CellClicked()
     {
-        ToggleCell(!IsAlive);
+        ToggleCell(!CurrentState);
         NotifyNeighbors();
     }
 
@@ -76,12 +111,22 @@ public class Cell : MonoBehaviour
     {
         Cell[] neighbors = GetNeighbors();
         int aliveNeighbors = CountAliveNeighbors(neighbors);
-        NextState = CellRules.GetAliveState(neighbors.Length, aliveNeighbors, IsAlive);
+        NextState = CellRules.GetAliveState(this, aliveNeighbors, CurrentState);
     }
 
     public Cell[] GetNeighbors()
     {
         return Grid.GetNeighbors(Position);
+    }
+
+    public bool IsNeighborAlive(int index)
+    {
+        bool isAlive = false;
+        Cell neighbor = GetNeighbors()[index];
+        if (neighbor != null)
+            isAlive = neighbor.CurrentState;
+
+        return isAlive;
     }
 
     public int CountAliveNeighbors(Cell[] neighbors)
@@ -93,7 +138,7 @@ public class Cell : MonoBehaviour
             if (neighbors[i] == null)
                 continue;
             
-            if (neighbors[i].IsAlive)
+            if (neighbors[i].CurrentState)
                 aliveNeighbors += 1;
 
         }

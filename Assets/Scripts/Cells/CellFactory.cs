@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CellFactory : MonoBehaviour
 {
-    [field: SerializeField] private CellRules_Default _rulesDefault;
-    public CellRules_Default RulesDefault { get { return _rulesDefault; } set { _rulesDefault = value; } }
+    [field: SerializeField] private CellRules_Roots _rulesDefault;
+    public CellRules_Roots RulesDefault { get { return _rulesDefault; } set { _rulesDefault = value; } }
 
     [field: SerializeField] private Grid _grid;
     public Grid Grid { get { return _grid; } set { _grid = value; } }
@@ -33,7 +33,7 @@ public class CellFactory : MonoBehaviour
         // TODO: Change rules here
 
         if (RulesDefault == null)
-            RulesDefault = new CellRules_Default();
+            RulesDefault = new CellRules_Roots();
 
         return RulesDefault;
     }

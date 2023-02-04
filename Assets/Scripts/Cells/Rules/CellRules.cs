@@ -4,14 +4,12 @@ using UnityEngine;
 
 public abstract class CellRules
 {
-    
-    public bool GetAliveState(int neighborAmount, int aliveNeighbors, bool currentState)
+    public bool GetAliveState(Cell cell, int aliveNeighbors, bool currentState)
     {
-        int deadNeighbors = neighborAmount - aliveNeighbors;
-        bool newState = CheckRules(neighborAmount, aliveNeighbors, currentState);
+        bool newState = CheckRules(cell, aliveNeighbors, currentState);
 
         return newState;
     }
 
-    public abstract bool CheckRules(int neighborAmount, int aliveNeighbors, bool currentState);
+    public abstract bool CheckRules(Cell cell, int aliveNeighbors, bool currentState);
 }
