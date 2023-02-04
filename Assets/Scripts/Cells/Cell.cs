@@ -48,6 +48,19 @@ public class Cell : MonoBehaviour
     public void CellClicked()
     {
         ToggleCell(!IsAlive);
+        NotifyNeighbors();
+    }
+
+    private void NotifyNeighbors()
+    {
+        Cell[] neighbors = GetNeighbors();
+        for (int i = 0; i < neighbors.Length; i++)
+        {
+            if (neighbors[i] == null)
+                continue;
+
+            neighbors[i].CalculateNextState();
+        }
     }
 
     public Vector2 GetSize()
