@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellVisuals: {fileID: 4190946956987048320}
+  _isAlive: 0
 --- !u!1 &7613455522163871739
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 4788468240405937313}
-  _spriteRenderer: {fileID: 5046869003434791863}
+  _image: {fileID: 5046869003434791863}
   _cellSpriteManager: {fileID: 7239955366474418237}
   _cell: {fileID: 1900191461284568459}
 --- !u!222 &555805500014618664
