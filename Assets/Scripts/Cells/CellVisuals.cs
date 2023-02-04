@@ -18,9 +18,102 @@ public class CellVisuals : MonoBehaviour
 
 
         //TODO: Logic for selecting the thing
-        if (_cell.IsAlive) _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Plus);
-        else _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Empty);
+        Cell[] neighbors = _cell.GetNeighbors();
 
+        bool up = neighbors[6]==null ? false : neighbors[6].IsAlive;
+        bool right = neighbors[4] == null ? false : neighbors[4].IsAlive;
+        bool down = neighbors[1] == null ? false : neighbors[1].IsAlive;
+        bool left = neighbors[3] == null ? false : neighbors[3].IsAlive;
+
+        if (_cell.IsAlive)
+        {
+            if (up && right && down && left)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Plus);
+                RotateImage(0f);
+            }
+            else if (up && right && down)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.T);
+                RotateImage(0f);
+            }
+            else if (right && down && left)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.T);
+                RotateImage(90f);
+            }
+            else if (down && left && up)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.T);
+                RotateImage(180f);
+            }
+            else if (left && up && right)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.T);
+                RotateImage(270f);
+            }
+            else if (up && right)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.L);
+                RotateImage(0f);
+            }
+            else if (right && down)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.L);
+                RotateImage(90f);
+            }
+            else if (down && left)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.L);
+                RotateImage(180f);
+            }
+            else if (left && up)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.L);
+                RotateImage(270f);
+            }
+            else if (up && down)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.I);
+                RotateImage(0f);
+            }
+            else if (right && left)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.I);
+                RotateImage(180f);
+            }
+            else if (up)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                RotateImage(0f);
+            }
+            else if (right)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                RotateImage(90f);
+            }
+            else if (down)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                RotateImage(180f);
+            }
+            else if (left)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                RotateImage(270f);
+            }
+        }
+        else
+        {
+            _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Empty);
+            RotateImage(0f);
+        }
+
+    }
+
+    private void RotateImage(float z)
+    {
+        _image.gameObject.transform.eulerAngles = new Vector3(_image.gameObject.transform.eulerAngles.x, _image.gameObject.transform.eulerAngles.y, _image.gameObject.transform.eulerAngles.z - z);
     }
 
     public Vector2 GetSize()
