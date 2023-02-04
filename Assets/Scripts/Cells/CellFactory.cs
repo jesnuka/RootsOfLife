@@ -22,7 +22,7 @@ public class CellFactory : MonoBehaviour
         GameObject cellObject = Instantiate(CellPrefab, position, Quaternion.identity);
         cellObject.transform.SetParent(parent, false);
         Cell cell = cellObject.GetComponent<Cell>();
-        cell.CellRules = ChooseRules();
+     //   cell.CellRules = ChooseRules();
         cell.Grid = Grid;
 
         return cell;

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GameScene Cameras.unity
+    guid: 5a03cd1c6b0eb8144bf770ca1ab70f1f
   m_configObjects: {}

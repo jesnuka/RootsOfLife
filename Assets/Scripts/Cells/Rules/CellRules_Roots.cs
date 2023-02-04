@@ -8,22 +8,35 @@ public class CellRules_Roots : CellRules
     {
         bool newState = false;
 
-        int rand = Random.Range(2, 5);
+        if(currentState)
+        {
+            if(AliveCellNeighborChecks[aliveNeighbors])
+                newState = true;
+        }
+        else
+        {
+            if(DeadCellNeighborChecks[aliveNeighbors] &&
+                (cell.IsNeighborAlive(1) || cell.IsNeighborAlive(3) || cell.IsNeighborAlive(4) || cell.IsNeighborAlive(6)))
+                newState = true;
+        }
+
+       /* int rand = Random.Range(2, 5);
 
         if (currentState)
         {
            // if (aliveNeighbors == 2 || aliveNeighbors == 3 || aliveNeighbors >= )
             if (aliveNeighbors <= 4)
                 newState = true;
+
         }
         else
         {
             if (aliveNeighbors <= 3 && aliveNeighbors > 0 && rand == 4 &&
-                (cell.IsNeighborAlive(1) || cell.IsNeighborAlive(3) || cell.IsNeighborAlive(4) || cell.IsNeighborAlive(6)))
+                )
                 newState = true;
         }
 
-
+        */
         return newState;
     }
 }

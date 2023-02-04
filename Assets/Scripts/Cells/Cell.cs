@@ -15,26 +15,22 @@ public class Cell : MonoBehaviour
     public CellVisuals CellVisuals { get { return _cellVisuals; } set { _cellVisuals = value; } }
 
     private CellRules _cellRules;
-    public CellRules CellRules { get { return _cellRules; } set { _cellRules = value; } }
+    public CellRules CellRules { get { return Grid.GameSettings.CurrentRules; } }
 
     // The current state of the cell
     [field: SerializeField] private bool _currentState;
     public bool CurrentState { get { return _currentState; } set { _currentState = value; } }
 
     [field: SerializeField] private int _deathSaves;
-    public int DeathSaves { get { return _deathSaves; } set { _deathSaves = value;  } }
+    public int DeathSaves { get { return Grid.GameSettings.DeathSaves; } }
 
     [field: SerializeField] private int _lifeSaves;
-    public int LifeSaves { get { return _lifeSaves; } set { _lifeSaves = value; } }
+    public int LifeSaves { get { return Grid.GameSettings.LifeSaves; }}
 
     // The next state of the cell that will be applied at the end of current turn
     [field: SerializeField] private bool _nextState;
     public bool NextState { get { return _nextState; } set { _nextState = value; } }
 
-    public Cell(Grid grid)
-    {
-        Grid = grid;
-    }
 
     public void SetPosition(int column, int row)
     {
@@ -48,10 +44,10 @@ public class Cell : MonoBehaviour
     {
         if(value == false)
         {
-            DeathSaves += 1;
-            if (DeathSaves >= 2)
+            Grid.GameSettings.DeathSaves += 1;
+            if (Grid.GameSettings.DeathSaves >= 2)
             {
-                LifeSaves = 0;
+                Grid.GameSettings.LifeSaves = 0;
                 CurrentState = false;
             }
             UpdateVisuals();
@@ -59,15 +55,15 @@ public class Cell : MonoBehaviour
         else
         {
             if (CurrentState == true)
-                LifeSaves += 1;
-            if(LifeSaves >= 5)
+                Grid.GameSettings.LifeSaves += 1;
+            if(Grid.GameSettings.LifeSaves >= 5)
             {
                 CurrentState = false;
                 UpdateVisuals();
             }
             else
             {
-                DeathSaves = 0;
+                Grid.GameSettings.DeathSaves = 0;
                 CurrentState = true;
                 UpdateVisuals();
             }
