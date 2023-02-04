@@ -113,7 +113,7 @@ public class CellVisuals : MonoBehaviour
 
     private void RotateImage(float z)
     {
-        _image.gameObject.transform.eulerAngles = new Vector3(_image.gameObject.transform.eulerAngles.x, _image.gameObject.transform.eulerAngles.y, _image.gameObject.transform.eulerAngles.z - z);
+        _image.gameObject.transform.eulerAngles = new Vector3(_image.gameObject.transform.eulerAngles.x, _image.gameObject.transform.eulerAngles.y, -z);
     }
 
     public Vector2 GetSize()

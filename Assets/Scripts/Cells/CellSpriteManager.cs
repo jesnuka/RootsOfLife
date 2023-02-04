@@ -20,7 +20,7 @@ public class CellSpriteManager : MonoBehaviour
         else if (shape == Shape.T) return GetRandomSpriteFromSet(_variations_T);
         else if (shape == Shape.Seed) return GetRandomSpriteFromSet(_variations_Seed);
         else if (shape == Shape.Plus) return GetRandomSpriteFromSet(_variations_Plus);
-        else return null;
+        else return GetRandomSpriteFromSet(_variations_Empty);
     }
 
     private Sprite GetRandomSpriteFromSet(Sprite[] spriteSet)
