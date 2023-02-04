@@ -40,7 +40,6 @@ public class Cell : MonoBehaviour
 
     public void ToggleCell(bool value)
     {
-        Debug.Log("Toggling cell");
         IsAlive = value;
         CellVisuals.ToggleCell(value);
     }
