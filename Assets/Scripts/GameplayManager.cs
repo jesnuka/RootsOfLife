@@ -55,6 +55,8 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(GameSettings.TurnSpeed);
         if (!IsUpdating && !IsPaused)
             UpdateGrid();
+        else if(!IsUpdating && IsPaused)
+            StartCoroutine(WaitForTurn());
     }
 
     private void UpdateGrid()
