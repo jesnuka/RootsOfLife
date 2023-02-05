@@ -10,6 +10,11 @@ public class DeathProbabilityListener : MonoBehaviour
 
     public static event Action<float> OnDeathProbabilityUpdated;
 
+    public void Start()
+    {
+        UpdateDeathProbability();
+    }
+
     public void UpdateDeathProbability()
     {
         OnDeathProbabilityUpdated?.Invoke(slider.value);

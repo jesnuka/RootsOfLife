@@ -30,6 +30,9 @@ public class DisplayUIValues : MonoBehaviour
         deathSaveOn = true;
         SetColor(lifeSaveButton, lifeSaveOn);
         SetColor(deathSaveButton, deathSaveOn);
+
+        OnDeathSaveChange(deathSaveLastValue);
+        OnDeathSaveChange(lifeSaveLastValue);
     }
 
     public void SetValue(int value)
