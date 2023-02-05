@@ -8,10 +8,11 @@ public class CellSpriteManager : MonoBehaviour
     [SerializeField] private Sprite[] _variations_L;
     [SerializeField] private Sprite[] _variations_I;
     [SerializeField] private Sprite[] _variations_T;
+    [SerializeField] private Sprite[] _variations_One;
     [SerializeField] private Sprite[] _variations_Seed;
     [SerializeField] private Sprite[] _variations_Empty;
 
-    public enum Shape { Plus, L, I, T, Seed, Empty };
+    public enum Shape { Plus, L, I, T, Seed, One, Empty };
 
     public Sprite GetSprite(Shape shape)
     {
@@ -19,6 +20,7 @@ public class CellSpriteManager : MonoBehaviour
         else if (shape == Shape.I) return GetRandomSpriteFromSet(_variations_I);
         else if (shape == Shape.T) return GetRandomSpriteFromSet(_variations_T);
         else if (shape == Shape.Seed) return GetRandomSpriteFromSet(_variations_Seed);
+        else if (shape == Shape.One) return GetRandomSpriteFromSet(_variations_One);
         else if (shape == Shape.Plus) return GetRandomSpriteFromSet(_variations_Plus);
         else return GetRandomSpriteFromSet(_variations_Empty);
     }

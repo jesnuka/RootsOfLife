@@ -112,7 +112,8 @@ public class CellVisuals : MonoBehaviour
         }
         else
         {
-            _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Empty);
+            if (_cell.CurrentState) _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+            else _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Empty);
             RotateImage(0f);
         }
 
