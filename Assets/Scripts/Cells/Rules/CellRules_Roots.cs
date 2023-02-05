@@ -7,7 +7,7 @@ public class CellRules_Roots : CellRules
     public override bool CheckRules(Cell cell, int aliveNeighbors, bool currentState)
     {
         bool newState = false;
-        float rand = Random.Range(0, 1);
+        float rand = Random.Range(0f, 1f);
 
         if(currentState)
         {

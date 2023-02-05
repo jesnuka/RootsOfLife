@@ -8,10 +8,10 @@ public class LifeProbabilityListener : MonoBehaviour
 {
     [SerializeField] Slider slider;
 
-    public static event Action<int> OnLifeProbabilityUpdated;
+    public static event Action<float> OnLifeProbabilityUpdated;
 
     public void UpdateLifeProbability()
     {
-        OnLifeProbabilityUpdated?.Invoke((int)slider.value);
+        OnLifeProbabilityUpdated?.Invoke(slider.value);
     }
 }
