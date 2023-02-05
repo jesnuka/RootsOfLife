@@ -11,6 +11,10 @@ public class AudioPlayer : MonoBehaviour
     //Detect when you use the toggle, ensures music isn’t played multiple times
     bool autoPlayMusic;
 
+    [SerializeField] private AudioClip m_occasionalOneShot;
+    private float m_timer = 0f;
+    private float m_nextOccasionalPlay = 7f;
+
     void Awake(){
         DontDestroyOnLoad(this.gameObject);
     }
@@ -41,6 +45,16 @@ public class AudioPlayer : MonoBehaviour
             m_MyAudioSource.Stop();
             //Ensure audio doesn’t play more than once
          autoPlayMusic = false;
+        }
+
+        m_timer += Time.deltaTime;
+        if (m_occasionalOneShot != null && m_timer > m_nextOccasionalPlay)
+        {
+            m_MyAudioSource.PlayOneShot(m_occasionalOneShot);
+            m_timer = 0f;
+            float min = m_occasionalOneShot.length;
+            float max = m_occasionalOneShot.length * 2;
+            m_nextOccasionalPlay = Random.Range(min, max);
         }
     }
 }
