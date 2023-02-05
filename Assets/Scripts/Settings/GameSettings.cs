@@ -31,6 +31,11 @@ public class GameSettings : MonoBehaviour
 
     }
 
+    public void ChangeGameSpeed(float newSpeed)
+    {
+        TurnSpeed = newSpeed;
+    }
+
     private void HandleEvents()
     {
         RuleButton.OnAliveRuleChange += ChangeAliveRules;

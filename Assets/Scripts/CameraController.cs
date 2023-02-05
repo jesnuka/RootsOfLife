@@ -27,16 +27,16 @@ public class CameraController : MonoBehaviour
 
     private void GetPlayerInput()
     {
-        if (Input.mousePosition.x >= (Screen.width - 100))
+        if (Input.mousePosition.x >= (Screen.width - 50))
             MoveCamera(new Vector2(_cameraSpeed, 0.0f));
 
-        if (Input.mousePosition.x <= (0 + 100))
+        if (Input.mousePosition.x <= (0 + 50))
             MoveCamera(new Vector2(-_cameraSpeed, 0.0f));
 
-        if (Input.mousePosition.y >= (Screen.height - 100))
+        if (Input.mousePosition.y >= (Screen.height - 50))
             MoveCamera(new Vector2(0.0f, _cameraSpeed));
 
-        if (Input.mousePosition.y <= (0 + 100))
+        if (Input.mousePosition.y <= (0 + 50))
             MoveCamera(new Vector2(0.0f, -_cameraSpeed));
     }
 
