@@ -18,12 +18,18 @@ public class DisplayUIValues : MonoBehaviour
     bool lifeSaveOn = true;
     bool deathSaveOn = true;
 
+
     int lifeSaveLastValue, deathSaveLastValue;
 
     void Start()
     {
         lifeSaveLastValue = (int)sliderLifeSave.value;
         deathSaveLastValue = (int)sliderDeathSave.value;
+
+        lifeSaveOn = true;
+        deathSaveOn = true;
+        SetColor(lifeSaveButton, lifeSaveOn);
+        SetColor(deathSaveButton, deathSaveOn);
     }
 
     public void SetValue(int value)
@@ -31,12 +37,20 @@ public class DisplayUIValues : MonoBehaviour
         text.text = value.ToString();
     }
 
-    public void SetLifeSaveOn(bool on)
+    private void SetColor(Image image, bool on)
     {
-        lifeSaveOn = on;
-        sliderLifeSave.interactable = on;
+        if (on) image.color = Color.black;
+        else image.color = Color.white;
+    }
 
-        if (on)
+    public void SetLifeSaveOn()
+    {
+        lifeSaveOn = !lifeSaveOn;
+        sliderLifeSave.interactable = lifeSaveOn;
+
+        SetColor(lifeSaveButton, lifeSaveOn);
+
+        if (lifeSaveOn)
         {
             sliderLifeSave.value = lifeSaveLastValue;
         } else
@@ -46,12 +60,14 @@ public class DisplayUIValues : MonoBehaviour
         }
     }
 
-    public void SetDeathSaveOn(bool on)
+    public void SetDeathSaveOn()
     {
-        deathSaveOn = on;
-        sliderDeathSave.interactable = on;
+        deathSaveOn = !deathSaveOn;
+        sliderDeathSave.interactable = deathSaveOn;
 
-        if (on)
+        SetColor(deathSaveButton, deathSaveOn);
+
+        if (deathSaveOn)
         {
             sliderDeathSave.value = deathSaveLastValue;
             if (sliderDeathSave.value > sliderLifeSave.value) sliderDeathSave.value = sliderLifeSave.value;

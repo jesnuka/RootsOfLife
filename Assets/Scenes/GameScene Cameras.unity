@@ -931,8 +931,8 @@ MonoBehaviour:
   text: {fileID: 1672635443}
   sliderDeathSave: {fileID: 276757612}
   sliderLifeSave: {fileID: 1368899049}
-  lifeSaveButton: {fileID: 0}
-  deathSaveButton: {fileID: 0}
+  lifeSaveButton: {fileID: 1904887213}
+  deathSaveButton: {fileID: 529738380}
 --- !u!1 &165940831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3105,10 +3105,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 773141088}
-        m_TargetAssemblyTypeName: RuleButton, Assembly-CSharp
-        m_MethodName: OnAliveClick
-        m_Mode: 3
+      - m_Target: {fileID: 124933835}
+        m_TargetAssemblyTypeName: DisplayUIValues, Assembly-CSharp
+        m_MethodName: SetDeathSaveOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10474,10 +10474,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 124933831}
-        m_TargetAssemblyTypeName: RuleButton, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 3
+      - m_Target: {fileID: 124933835}
+        m_TargetAssemblyTypeName: DisplayUIValues, Assembly-CSharp
+        m_MethodName: SetLifeSaveOn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
