@@ -22,10 +22,10 @@ public class Cell : MonoBehaviour
     public bool CurrentState { get { return _currentState; } set { _currentState = value; } }
 
     [field: SerializeField] private int _deathSaves;
-    public int DeathSaves { get { return Grid.GameSettings.DeathSaves; } }
+    public int DeathSaves { get { return _deathSaves; } set { _deathSaves = value; } }
 
     [field: SerializeField] private int _lifeSaves;
-    public int LifeSaves { get { return Grid.GameSettings.LifeSaves; }}
+    public int LifeSaves { get { return _lifeSaves; } set { _lifeSaves = value; } }
 
     // The next state of the cell that will be applied at the end of current turn
     [field: SerializeField] private bool _nextState;
@@ -42,47 +42,32 @@ public class Cell : MonoBehaviour
 
     public void ToggleCell(bool value)
     {
-        if(value == false)
+        if (value == false)
         {
-          //  Grid.GameSettings.DeathSaves += 1;
-            if (Grid.GameSettings.IncreaseDeathSaves())
+            DeathSaves += 1;
+            if (Grid.GameSettings.CheckDeathSaves(DeathSaves))
             {
-                Grid.GameSettings.ResetLifeSaves();
+                LifeSaves = 0;
                 CurrentState = false;
             }
             UpdateVisuals();
         }
         else
         {
-
-            if(CurrentState == true)
-            {
-                if(Grid.GameSettings.IncreaseLifeSaves())
-                {
-                    CurrentState = false;
-                    UpdateVisuals();
-                }
-            }
-            else
-            {
-                Grid.GameSettings.ResetLifeSaves();
-                CurrentState = true;
-                UpdateVisuals();
-            }
-
-          /*  if (CurrentState == true)
-                Grid.GameSettings.LifeSaves += 1;
-            if(Grid.GameSettings.LifeSaves >= 5)
+            if (CurrentState == true)
+                LifeSaves += 1;
+            if (Grid.GameSettings.CheckLifeSaves(LifeSaves))
             {
                 CurrentState = false;
                 UpdateVisuals();
             }
             else
             {
-                Grid.GameSettings.DeathSaves = 0;
+                DeathSaves = 0;
                 CurrentState = true;
                 UpdateVisuals();
-            }*/
+            }
+
         }
     }
 
@@ -101,8 +86,8 @@ public class Cell : MonoBehaviour
     {
         CurrentState = false;
         NextState = false;
-        Grid.GameSettings.ResetLifeSaves();
-        Grid.GameSettings.ResetDeathSaves();
+        LifeSaves = 0;
+        DeathSaves = 0;
         UpdateVisuals();
     }
 
