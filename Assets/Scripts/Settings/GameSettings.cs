@@ -42,6 +42,7 @@ public class GameSettings : MonoBehaviour
     {
         RuleButton.OnAliveRuleChange += ChangeAliveRules;
         RuleButton.OnDeadRuleChange += ChangeDeadRules;
+
     }
 
     private void ChangeAliveRules(bool[] newRules)
@@ -52,6 +53,16 @@ public class GameSettings : MonoBehaviour
     private void ChangeDeadRules(bool[] newRules)
     {
         CurrentRules.DeadCellNeighborChecks = newRules;
+    }
+
+    private void ChangeLifeSaveMax(int newValue)
+    {
+        LifeSavesMax = newValue;
+    }
+
+    private void ChangeDeathSaveMax(int newValue)
+    {
+        DeathSavesMax = newValue;
     }
 
     private void SetupRules()
