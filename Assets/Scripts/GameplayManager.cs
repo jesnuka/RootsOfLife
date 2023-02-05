@@ -11,6 +11,8 @@ public class GameplayManager : MonoBehaviour
     [field: SerializeField] private GameSettings _gameSettings;
     public GameSettings GameSettings { get { return _gameSettings; } set { _gameSettings = value; } }
 
+    [SerializeField] DisplayUIValues ui;
+
   //  public static event Action onCheckingFinished;
   //  public static event Action onUpdateFinished;
 
@@ -20,18 +22,29 @@ public class GameplayManager : MonoBehaviour
     private bool _isPaused;
     public bool IsPaused { get { return _isPaused; } set { _isPaused = value; } }
 
+    private int _iterations;
+    public int Iterations { get { return _iterations; } set { _iterations = value; } }
+
     private void Start()
     {
       //  onUpdateFinished += StartGridUpdate;
         Grid.CreateGrid(GameSettings);
+        Iterations = 0;
+        ui.SetValue(Iterations);
 
         StartGridUpdate();
     }
 
     public void TogglePause()
     {
-
         IsPaused = !IsPaused;
+    }
+
+    public void Restart()
+    {
+        Grid.Restart();
+        Iterations = 0;
+        ui.SetValue(Iterations);
     }
 
     /*public void FinishUpdate()
@@ -61,6 +74,9 @@ public class GameplayManager : MonoBehaviour
 
     private void UpdateGrid()
     {
+        Iterations += 1;
+        ui.SetValue(Iterations);
+
         IsUpdating = true;
 
         // Perform grid check for next state

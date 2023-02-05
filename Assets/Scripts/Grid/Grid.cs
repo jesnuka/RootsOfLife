@@ -86,4 +86,8 @@ public class Grid : MonoBehaviour
         return neighbors;
     }
 
+    public void Restart()
+    {
+        //TODO implement setting every cell to dead.
+    }
 }
