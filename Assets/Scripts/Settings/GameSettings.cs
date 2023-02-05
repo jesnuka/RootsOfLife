@@ -36,7 +36,6 @@ public class GameSettings : MonoBehaviour
         RuleButton.OnAliveRuleChange += ChangeAliveRules;
         RuleButton.OnDeadRuleChange += ChangeDeadRules;
         DisplayUIValues.OnDeathSaveChange += ChangeDeathSaveMax;
-        DisplayUIValues.OnLifeSaveChange += ChangeLifeSaveMax;
     }
 
     private void ChangeRandomMax(int newMax)

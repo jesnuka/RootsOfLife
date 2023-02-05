@@ -22,7 +22,9 @@ public class UIHandler : MonoBehaviour
     public enum UIHandlerType
     {
         Other,
-        PauseButton
+        PauseButton,
+        AliveProbabilitySlider,
+        DeathProbabilitySlider
     }
 
     private void Awake()
@@ -33,6 +35,10 @@ public class UIHandler : MonoBehaviour
     private void SetupHandler()
     {
         if (HandlerType == UIHandlerType.PauseButton)
+            ButtonListener = new ButtonListener_Pause();
+        else if (HandlerType == UIHandlerType.AliveProbabilitySlider)
+            ButtonListener = new ButtonListener_Pause();
+        else if (HandlerType == UIHandlerType.DeathProbabilitySlider)
             ButtonListener = new ButtonListener_Pause();
     }
 
