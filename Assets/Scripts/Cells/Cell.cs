@@ -44,17 +44,33 @@ public class Cell : MonoBehaviour
     {
         if(value == false)
         {
-            Grid.GameSettings.DeathSaves += 1;
-            if (Grid.GameSettings.DeathSaves >= 2)
+          //  Grid.GameSettings.DeathSaves += 1;
+            if (Grid.GameSettings.IncreaseDeathSaves())
             {
-                Grid.GameSettings.LifeSaves = 0;
+                Grid.GameSettings.ResetLifeSaves();
                 CurrentState = false;
             }
             UpdateVisuals();
         }
         else
         {
-            if (CurrentState == true)
+
+            if(CurrentState == true)
+            {
+                if(Grid.GameSettings.IncreaseLifeSaves())
+                {
+                    CurrentState = false;
+                    UpdateVisuals();
+                }
+            }
+            else
+            {
+                Grid.GameSettings.ResetLifeSaves();
+                CurrentState = true;
+                UpdateVisuals();
+            }
+
+          /*  if (CurrentState == true)
                 Grid.GameSettings.LifeSaves += 1;
             if(Grid.GameSettings.LifeSaves >= 5)
             {
@@ -66,7 +82,7 @@ public class Cell : MonoBehaviour
                 Grid.GameSettings.DeathSaves = 0;
                 CurrentState = true;
                 UpdateVisuals();
-            }
+            }*/
         }
     }
 
@@ -79,6 +95,15 @@ public class Cell : MonoBehaviour
     {
         ToggleCell(!CurrentState);
         NotifyNeighbors();
+    }
+
+    public void ResetCell()
+    {
+        CurrentState = false;
+        NextState = false;
+        Grid.GameSettings.ResetLifeSaves();
+        Grid.GameSettings.ResetDeathSaves();
+        UpdateVisuals();
     }
 
     private void NotifyNeighbors()

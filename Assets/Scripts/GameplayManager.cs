@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
+    public static event Action<bool> onPause;
+
     [SerializeField] private Grid _grid;
     public Grid Grid { get { return _grid; } set { _grid = value; } }
 
@@ -31,6 +33,7 @@ public class GameplayManager : MonoBehaviour
         Grid.CreateGrid(GameSettings);
         Iterations = 0;
         ui.SetValue(Iterations);
+        TogglePause();
 
         StartGridUpdate();
     }
@@ -38,10 +41,14 @@ public class GameplayManager : MonoBehaviour
     public void TogglePause()
     {
         IsPaused = !IsPaused;
+        onPause?.Invoke(IsPaused);
     }
 
     public void Restart()
     {
+        IsPaused = true;
+        onPause?.Invoke(IsPaused);
+
         Grid.Restart();
         Iterations = 0;
         ui.SetValue(Iterations);

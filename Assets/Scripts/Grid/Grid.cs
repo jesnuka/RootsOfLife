@@ -88,6 +88,13 @@ public class Grid : MonoBehaviour
 
     public void Restart()
     {
-        //TODO implement setting every cell to dead.
+        for (int y = 0; y < RowAmount; y++)
+        {
+            for (int x = 0; x < ColumnAmount; x++)
+            {
+                Rows[y].Cells[x].ResetCell();
+            }
+        }
+
     }
 }
