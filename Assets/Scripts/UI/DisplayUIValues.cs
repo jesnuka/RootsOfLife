@@ -80,7 +80,12 @@ public class DisplayUIValues : MonoBehaviour
 
     public void UpdateDeathSave()
     {
-        if (sliderDeathSave.value > sliderLifeSave.value) sliderLifeSave.value = sliderDeathSave.value;
+        
+        if (lifeSaveOn && sliderDeathSave.value > sliderLifeSave.value)
+        {
+            Debug.Log(lifeSaveOn);
+            sliderLifeSave.value = sliderDeathSave.value;
+        }
         OnDeathSaveChange?.Invoke((int)sliderDeathSave.value);
     }
     public void UpdateLifeSave()
