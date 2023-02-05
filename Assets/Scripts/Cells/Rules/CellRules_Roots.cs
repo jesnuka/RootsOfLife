@@ -7,16 +7,18 @@ public class CellRules_Roots : CellRules
     public override bool CheckRules(Cell cell, int aliveNeighbors, bool currentState)
     {
         bool newState = false;
+        float rand = Random.Range(0, 1);
 
         if(currentState)
         {
-            if(AliveCellNeighborChecks[aliveNeighbors])
+            if(AliveCellNeighborChecks[aliveNeighbors] && (rand < RandomMaxAlive))
                 newState = true;
         }
         else
         {
             if(DeadCellNeighborChecks[aliveNeighbors] &&
-                (cell.IsNeighborAlive(1) || cell.IsNeighborAlive(3) || cell.IsNeighborAlive(4) || cell.IsNeighborAlive(6)))
+                (cell.IsNeighborAlive(1) || cell.IsNeighborAlive(3) || cell.IsNeighborAlive(4) || cell.IsNeighborAlive(6)) && 
+                (rand < RandomMaxDead))
                 newState = true;
         }
 
