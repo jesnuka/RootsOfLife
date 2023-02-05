@@ -7,6 +7,6 @@ public class OnPressPlay : MonoBehaviour
 {
     public void OnPlayPressed(){
         Debug.Log("Remember to check the build order");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
