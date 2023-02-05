@@ -11,6 +11,11 @@ public class AudioPlayer : MonoBehaviour
     //Detect when you use the toggle, ensures music isn’t played multiple times
     bool autoPlayMusic;
 
+    void Awake(){
+        DontDestroyOnLoad(this.gameObject);
+    }
+    
+
     void Start()
     {
         //Fetch the AudioSource from the GameObject
