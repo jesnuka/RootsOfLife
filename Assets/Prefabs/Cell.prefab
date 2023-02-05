@@ -62,7 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellVisuals: {fileID: 4190946956987048320}
-  _isAlive: 0
+  _currentState: 0
+  _deathSaves: 0
+  _lifeSaves: 0
   _nextState: 0
 --- !u!1 &3821060268986101571
 GameObject:
@@ -463,6 +465,11 @@ MonoBehaviour:
   _image: {fileID: 7570065022970796238}
   _cellSpriteManager: {fileID: 7239955366474418237}
   _cell: {fileID: 1900191461284568459}
+  up: 0
+  right: 0
+  down: 0
+  left: 0
+  neighbors: []
 --- !u!222 &555805500014618664
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -517,11 +524,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7e32b7c089dbe4f41a28ce478f033814, type: 3}
   _variations_L:
   - {fileID: 21300000, guid: 23b233b3f399e02478203e83b8e73c89, type: 3}
+  - {fileID: 21300000, guid: cbff329720c2e0344beb94e5f6d2014c, type: 3}
   _variations_I:
   - {fileID: 21300000, guid: afc29aac4af5cce4293cb0c56c08090d, type: 3}
   - {fileID: 21300000, guid: 4adb7975bfa027240a1a4bf01a7ae311, type: 3}
+  - {fileID: 21300000, guid: bb3c6db292d3f104bb1e25c2a67b6a84, type: 3}
+  - {fileID: 21300000, guid: 02ef1105db5f9bc42a32179ac144f028, type: 3}
   _variations_T:
   - {fileID: 21300000, guid: b912360e7a3c95440b217303f7aee13f, type: 3}
+  - {fileID: 21300000, guid: e506292ac37da4640b23a99519c7a977, type: 3}
   _variations_Seed:
   - {fileID: 21300000, guid: 22fd1900e75ebc34787fd49f166f5e11, type: 3}
   _variations_Empty:
