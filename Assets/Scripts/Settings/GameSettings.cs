@@ -18,6 +18,12 @@ public class GameSettings : MonoBehaviour
     [field: SerializeField] private int _lifeSaves;
     public int LifeSaves { get { return _lifeSaves; } set { _lifeSaves = value; } }
 
+    [field: SerializeField] private int _deathSavesMax;
+    public int DeathSavesMax { get { return _deathSavesMax; } set { _deathSavesMax = value; } }
+
+    [field: SerializeField] private int _lifeSavesMax;
+    public int LifeSavesMax { get { return _lifeSavesMax; } set { _lifeSavesMax = value; } }
+
     private CellRules _currentRules;
     public CellRules CurrentRules { get { return _currentRules; } set { _currentRules = value; } }
 
@@ -54,6 +60,32 @@ public class GameSettings : MonoBehaviour
         CurrentRules.AliveCellNeighborChecks = new bool[9];
         CurrentRules.DeadCellNeighborChecks = new bool[9];
     }
+
+    public bool IncreaseDeathSaves()
+    {
+        DeathSaves += 1;
+        if (DeathSaves >= DeathSavesMax)
+            return true;
+        else return false;
+    }
+    public bool IncreaseLifeSaves()
+    {
+        LifeSaves += 1;
+        if (LifeSaves >= LifeSavesMax)
+            return true;
+        else return false;
+    }
+
+    public void ResetDeathSaves()
+    {
+        DeathSaves = 0;
+    }
+
+    public void ResetLifeSaves()
+    {
+        LifeSaves = 0;
+    }
+
 
 
 
