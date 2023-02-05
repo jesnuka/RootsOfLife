@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06785b8bbcfba2488de89e3fc2be354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _handlerType: 1
   _firstImage: {fileID: 1827816499}
   _secondImage: {fileID: 1920451328}
 --- !u!1 &86738117
@@ -1937,6 +1938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06785b8bbcfba2488de89e3fc2be354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _handlerType: 0
   _firstImage: {fileID: 1944696105}
   _secondImage: {fileID: 172389451}
 --- !u!222 &356203979
