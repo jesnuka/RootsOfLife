@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class CellRules
 {
+    [field: SerializeField] private int _randomMax;
+    public int RandomMax { get { return _randomMax; } set { _randomMax = value; } }
+
     // Check how which amounts of neighbors are allowed for alive Cells to stay alive
     private bool[] _aliveCellNeighborChecks;
     public bool[] AliveCellNeighborChecks { get { return _aliveCellNeighborChecks; } set { _aliveCellNeighborChecks = value; } }

@@ -45,6 +45,11 @@ public class GameSettings : MonoBehaviour
 
     }
 
+    private void ChangeRandomMax(int newMax)
+    {
+        CurrentRules.RandomMax = newMax;
+    }
+
     private void ChangeAliveRules(bool[] newRules)
     {
         CurrentRules.AliveCellNeighborChecks = newRules;

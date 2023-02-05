@@ -6894,10 +6894,10 @@ MonoBehaviour:
   _columnAmount: 100
   _rowAmount: 50
   _turnSpeed: 1
-  _deathSaves: 0
-  _lifeSaves: 0
-  _deathSavesMax: 0
-  _lifeSavesMax: 0
+  _deathSaves: 2
+  _lifeSaves: 5
+  _deathSavesMax: 2
+  _lifeSavesMax: 5
 --- !u!1 &1468556368
 GameObject:
   m_ObjectHideFlags: 0
