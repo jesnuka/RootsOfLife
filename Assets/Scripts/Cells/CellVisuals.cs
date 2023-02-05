@@ -87,33 +87,32 @@ public class CellVisuals : MonoBehaviour
             }
             else if (up)
             {
-                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.One);
                 RotateImage(0f);
             }
             else if (right)
             {
-                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.One);
                 RotateImage(90f);
             }
             else if (down)
             {
-                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.One);
                 RotateImage(180f);
             }
             else if (left)
             {
-                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.One);
                 RotateImage(270f);
             } else
             {
                 _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
-                RotateImage(0f);
+                RotateImage(new float[] { 0f, 90f, 180f, 270f });
             }
         }
         else
         {
-            if (_cell.CurrentState) _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
-            else _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Empty);
+            _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Empty);
             RotateImage(0f);
         }
 
@@ -122,6 +121,12 @@ public class CellVisuals : MonoBehaviour
     private void RotateImage(float z)
     {
         _image.gameObject.transform.eulerAngles = new Vector3(_image.gameObject.transform.eulerAngles.x, _image.gameObject.transform.eulerAngles.y, -z);
+    }
+
+    private void RotateImage(float[] zs)
+    {
+        float z = zs[Random.Range(0, zs.Length)];
+        RotateImage(z);
     }
 
     public Vector2 GetSize()

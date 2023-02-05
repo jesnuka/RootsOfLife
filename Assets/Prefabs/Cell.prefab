@@ -533,8 +533,10 @@ MonoBehaviour:
   _variations_T:
   - {fileID: 21300000, guid: b912360e7a3c95440b217303f7aee13f, type: 3}
   - {fileID: 21300000, guid: e506292ac37da4640b23a99519c7a977, type: 3}
-  _variations_Seed:
+  _variations_One:
   - {fileID: 21300000, guid: 72ed6c49db2e3e24ea28ec0df68c73b1, type: 3}
   - {fileID: 21300000, guid: eb8f8c81df3cb5a41a0a2e73e5218ea0, type: 3}
+  _variations_Seed:
+  - {fileID: 21300000, guid: 70956d0f400671442a341beb55b2f605, type: 3}
   _variations_Empty:
   - {fileID: 21300000, guid: 5d348957872bbd340929d35b3309b85d, type: 3}
