@@ -15,7 +15,6 @@ public class UIHandler : MonoBehaviour
 
     public void ToggleImage()
     {
-        Debug.Log("CLICK");
         if (FirstImage == null || SecondImage == null)
             return;
         State = !State;
