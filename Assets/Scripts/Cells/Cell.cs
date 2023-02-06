@@ -31,6 +31,9 @@ public class Cell : MonoBehaviour
     [field: SerializeField] private bool _nextState;
     public bool NextState { get { return _nextState; } set { _nextState = value; } }
 
+    private bool _playerPlaced;
+    public bool PlayerPlaced { get { return _playerPlaced; } set { _playerPlaced = value; } }
+
 
     public void SetPosition(int column, int row)
     {
@@ -40,8 +43,25 @@ public class Cell : MonoBehaviour
             Position.SetPosition(column, row);
     }
 
-    public void ToggleCell(bool value)
+    private void ForceToggleCell(bool value)
     {
+        if (value)
+        {
+            PlayerPlaced = true;
+            LifeSaves = 0;
+            DeathSaves = 0;
+            CurrentState = true;
+        } else
+        {
+            CurrentState = false;
+            NotifyNeighbors();
+        }
+        UpdateVisuals();
+    }
+
+    private void ToggleCell(bool value)
+    {
+        PlayerPlaced = false;
         if (value == false)
         {
             DeathSaves += 1;
@@ -78,8 +98,7 @@ public class Cell : MonoBehaviour
     
     public void CellClicked()
     {
-        ToggleCell(!CurrentState);
-        NotifyNeighbors();
+        ForceToggleCell(!CurrentState);
     }
 
     public void ResetCell()

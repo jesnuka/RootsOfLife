@@ -8,9 +8,15 @@ public class CameraController : MonoBehaviour
     [SerializeField] float minZoom, maxZoom;
     [SerializeField] Slider zoomSlider;
     [SerializeField] Camera camera;
+    [SerializeField] float border = 50f;
+    [SerializeField] float xRightLimit = 0.76f; // depends on the size of the UI screen. Original was 230 of the total canvas size 960. (960-230)/960
+    [SerializeField] private float movementTreshold = 5;
 
     [SerializeField] float _cameraSpeed;
-    
+
+    private float mouseOldX, mouseOldY;
+
+
     [field: SerializeField] private bool _canMove;
     public bool CanMove { get { return _canMove; } set { _canMove = value; } }
 
@@ -19,25 +25,40 @@ public class CameraController : MonoBehaviour
         camera.orthographicSize = Mathf.Lerp(minZoom, maxZoom, zoomSlider.value);
     }
 
-    private void Update()
+    private async void Update()
     {
         if (CanMove)
             GetPlayerInput();
+
+        mouseOldX = Input.mousePosition.x;
+        mouseOldY = Input.mousePosition.y;
     }
 
     private void GetPlayerInput()
     {
-        if (Input.mousePosition.x >= (Screen.width - 50))
-            MoveCamera(new Vector2(_cameraSpeed, 0.0f));
+        if (Input.mousePosition.x >= Screen.width * xRightLimit || Input.mousePosition.x < 0f || Input.mousePosition.y >= Screen.height || Input.mousePosition.y >= Screen.height)
+            return;
 
-        if (Input.mousePosition.x <= (0 + 50))
-            MoveCamera(new Vector2(-_cameraSpeed, 0.0f));
+        if (Input.mousePosition.x >= Screen.width*xRightLimit - border)
+        {
+            if (Mathf.Abs(Input.mousePosition.x - mouseOldX) <= movementTreshold) MoveCamera(new Vector2(_cameraSpeed, 0.0f));
+        }
 
-        if (Input.mousePosition.y >= (Screen.height - 50))
-            MoveCamera(new Vector2(0.0f, _cameraSpeed));
+        if (Input.mousePosition.x <= (0 + border))
+        {
+            if (Mathf.Abs(Input.mousePosition.x - mouseOldX) <= movementTreshold) MoveCamera(new Vector2(-_cameraSpeed, 0.0f));
+        }
 
-        if (Input.mousePosition.y <= (0 + 50))
-            MoveCamera(new Vector2(0.0f, -_cameraSpeed));
+        if (Input.mousePosition.y >= (Screen.height - border))
+        {
+            if (Mathf.Abs(Input.mousePosition.y - mouseOldY) <= movementTreshold) MoveCamera(new Vector2(0.0f, _cameraSpeed));
+        }
+
+        if (Input.mousePosition.y <= (0 + border))
+        {
+            if (Mathf.Abs(Input.mousePosition.x - mouseOldX) <= movementTreshold) MoveCamera(new Vector2(0.0f, -_cameraSpeed));
+        }
+            
     }
 
     private void MoveCamera(Vector2 newPosition)

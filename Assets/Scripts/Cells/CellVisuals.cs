@@ -30,7 +30,13 @@ public class CellVisuals : MonoBehaviour
 
         if (_cell.CurrentState)
         {
-            if (up && right && down && left)
+            
+            if (_cell.PlayerPlaced)
+            {
+                _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Seed);
+                RotateImage(new float[] { 0f, 90f, 180f, 270f });
+            }
+            else if (up && right && down && left)
             {
                 _image.sprite = _cellSpriteManager.GetSprite(CellSpriteManager.Shape.Plus);
                 RotateImage(0f);
